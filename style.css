@@ -1,0 +1,250 @@
+body {
+	margin: 0 auto;
+	background: url(img/music.jpg) fixed;
+	background-position: center;
+	background-size: cover;
+	text-shadow: 1px 1px 2px black;
+}
+
+.psi_div {
+	position: absolute;
+	right: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.psi_p {
+	color: #2927D3;
+	font-size: 25px;
+	text-shadow: 0 0 10px #2927D3;
+	animation: psi_color 2s infinite alternate;
+}
+
+@keyframes psi_color {
+	25% {
+		text-shadow: #EE82EE 0 0 10px;
+		color: #EE82EE;
+	}
+	10% {
+		text-shadow: #EE82EE 0 0 10px;
+		color: #EE82EE;
+	}
+	50% {
+		text-shadow: #FFFF00 0 0 10px;
+		color: #FFFF00;
+	}
+	55% {
+		text-shadow: #FFFF00 0 0 10px;
+		color: #FFFF00;
+	}
+	75% {
+		text-shadow: #00c200 0 0 10px;
+		color: #00c200;
+	}
+	80% {
+		text-shadow: #00c200 0 0 10px;
+		color: #00c200;
+	}
+	100% {
+		text-shadow: #FFA500 0 0 10px;
+		color: #FFA500;
+	}
+}
+
+.line {
+	position: absolute;
+	margin: 20px;
+	border: solid 5px #2927D3;
+	border-radius: 40px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: #2927D3 inset 0 0 30px 10px;
+	animation: line_color 2s infinite alternate, border 3s infinite;
+}
+
+@keyframes line_color {
+	25% {
+		box-shadow: #EE82EE inset 0 0 30px 10px;
+		border: solid 5px #EE82EE;
+	}
+	10% {
+		box-shadow: #EE82EE inset 0 0 30px 10px;
+		border: solid 5px #EE82EE;
+	}
+	50% {
+		box-shadow: #FFFF00 inset 0 0 30px 10px;
+		border: solid 5px #FFFF00;
+	}
+	55% {
+		box-shadow: #FFFF00 inset 0 0 30px 10px;
+		border: solid 5px #FFFF00;
+	}
+	75% {
+		box-shadow: #00c200 inset 0 0 30px 10px;
+		border: solid 5px #00c200;
+	}
+	80% {
+		box-shadow: #00c200 inset 0 0 30px 10px;
+		border: solid 5px #00c200;
+	}
+	100% {
+		box-shadow: #FFA500 inset 0 0 30px 10px;
+		border: solid 5px #FFA500;
+	}
+}
+
+@keyframes border {
+	0% {
+		border-radius: 40px;
+		border-top-left-radius: 200px;
+	}
+	25% {
+		border-radius: 40px;
+		border-top-right-radius: 200px;
+	}
+	50% {
+		border-radius: 40px;
+		border-bottom-right-radius: 200px;
+	}
+	75% {
+		border-radius: 40px;
+		border-bottom-left-radius: 200px;
+	}
+	100% {border-radius: 40px;
+		border-top-left-radius: 200px;}
+}
+
+.download_musics {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.music_folder {
+	margin-left: 10px;
+	width: 200px;
+}
+
+.download_musics_button {
+	font-size: 17px;
+	font-weight: 600;
+	text-decoration: none;
+	margin-top: -10px;
+	border-radius: 6px;
+	border: 3px solid #66CCFF;
+	text-shadow: 0 0 10px #66CCFF;
+	background: #222222;
+	padding: 4px 6px;
+	color: #66CCFF;
+	border: solid 3px #2927D3;
+	animation: line_color_button 2s infinite alternate;
+	transition: 0.1s;
+}
+
+.download_musics_button:hover {
+	padding: 4px 10px;
+	transition: 0.1s;
+}
+
+.see_musics {
+	font-weight: 600;
+	padding-top: 10px;
+	text-decoration: none;
+	text-shadow: 0 0 10px #66CCFF;
+	color: #66CCFF;
+	animation: text_color 2s infinite alternate;
+}
+
+.download_musics .p {
+	text-shadow: 0 0 10px #66CCFF;
+	color: #66CCFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	animation: text_color 2s infinite alternate;
+	margin-top: 100px;
+	margin-left: 40px;
+	margin-right: 20px;
+}
+
+@keyframes line_color_button {
+	25% {
+		border: solid 3px #EE82EE;
+		color: #EE82EE;
+		text-shadow: 0 0 10px #EE82EE;
+	}
+	10% {
+		border: solid 3px #EE82EE;
+		color: #EE82EE;
+		text-shadow: 0 0 10px #EE82EE;
+	}
+	50% {
+		border: solid 3px #FFFF00;
+		color: #FFFF00;
+		text-shadow: 0 0 10px #FFFF00;
+	}
+	55% {
+		border: solid 3px #FFFF00;
+		color: #FFFF00;
+		text-shadow: 0 0 10px #FFFF00;
+	}
+	75% {
+		border: solid 3px #00c200;
+		color: #00c200;
+		text-shadow: 0 0 10px #00c200;
+	}
+	80% {
+		border: solid 3px #00c200;
+		color: 0#0c200;
+		text-shadow: 0 0 10px #00c200;
+	}
+	100% {
+		border: solid 3px #FFA500;
+		color: #FFA500;
+		text-shadow: 0 0 10px #FFA500;
+	}
+}
+
+@keyframes text_color {
+	25% {
+		color: #EE82EE;
+		text-shadow: 0 0 10px #EE82EE;
+	}
+	10% {
+		color: #EE82EE;
+		text-shadow: 0 0 10px #EE82EE;
+	}
+	50% {
+		color: #FFFF00;
+		text-shadow: 0 0 10px #FFFF00;
+	}
+	55% {
+		color: #FFFF00;
+		text-shadow: 0 0 10px #FFFF00;
+	}
+	75% {
+		color: #00c200;
+		text-shadow: 0 0 10px #00c200;
+	}
+	80% {
+		color: 0#0c200;
+		text-shadow: 0 0 10px #00c200;
+	}
+	100% {
+		color: #FFA500;
+		text-shadow: 0 0 10px #FFA500;
+	}
+}
