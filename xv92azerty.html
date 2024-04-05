@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page web - 1</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgb(22, 21, 21);
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: opacity 4s, transform 4s;
+        animation: particle 5s;
+    }
+    @keyframes particle {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+    .page {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(100px);
+        background-color: rgba(22, 21, 21, 0.5);
+    }
+    * {
+        color: white;
+        font-size: 25px;
+    }
+</style>
+</head>
+<body>
+<div class="container"></div>
+<div class="page">
+    <div id="txt" style="display: none;">x: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">100111010101010</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">100111010101010</span></div>
+    <button onclick id="showButton" style="background-color: blue;border-radius: 10px;border: none;padding: 10px 20px;"><span id="clickCounter">Oh... un bouton ?</span></button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".container");
+    const maxClick = 201;
+    let alertCount = 50;
+    let clickCount = 0;
+
+    function typeWriter(txt, speed, i=0) {
+        if (i==0) {
+            document.getElementById("clickCounter").textContent = '';
+        }
+        if (i < txt.length) {
+            document.getElementById("clickCounter").textContent += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed, txt, speed, i);
+        }
+    }
+
+    function endButton() {
+        document.getElementById("showButton").style.display = "none";
+        document.getElementById("txt").style.display = "block";
+        setTimeout(alert, 30000, 'Si jamais tu le vois pas: c\'est du binaire')
+    }
+
+    function addLinkAttr() {
+        document.getElementById("showButton").setAttribute('link', 1)
+    }
+
+    document.getElementById("showButton").addEventListener("click", function() {
+        if (maxClick-clickCount>1){
+            if (clickCount == 0){
+                alert('Tu vas vite comprendre ce que tu dois faire ;)')
+            }
+            clickCount++;
+            document.getElementById("clickCounter").textContent = maxClick - clickCount;
+            if (maxClick - clickCount <= 10){
+                alert('Tu y est presque, plus que '+(maxClick-clickCount)+' cliques')
+            }
+            if (maxClick - clickCount <= 9 && maxClick - clickCount >= 3){
+                alert('Petit message pour t\'encourager')
+            }
+            if (maxClick - clickCount == 5){
+                alert('Tu y est vraiment bientôt')
+            }
+            if (maxClick - clickCount == 4){
+                alert('Tu trouve pas que le site web est jolie ?')
+            }
+            if (maxClick - clickCount == 4){
+                alert('Nan mais... je dis ca je dis rien')
+            }
+            if (maxClick - clickCount == 4){
+                alert('Bon faut que j\'arrete de t\'interrompre non ?')
+            }
+            if (maxClick - clickCount == 4){
+                alert('Ok, OK, je te laisse continuer à appuyer sur ce bouton')
+            }
+            if (maxClick - clickCount == 3){
+                alert('Derniere ligne droite')
+            }
+            if (maxClick - clickCount == 2){
+                alert('T\'as vraiment cru que ce serait si facile, laisse moi rire...\nHAHAHA')
+            }
+        }else if (alertCount == 1){
+            if (document.getElementById("showButton").hasAttribute('onclick')){
+                document.getElementById("showButton").removeAttribute('onclick')
+                typeWriter('Bon, bien joué', 50)
+                setTimeout(typeWriter, 2000, 'Je vais enfin te révéler ce que je cachais', 50)
+                setTimeout(typeWriter, 5500, 'Mais avant...', 50)
+                setTimeout(typeWriter, 7500, 'Une petite blague personnelle', 50)
+                setTimeout(typeWriter, 11000, 'Clique sur moi', 50)
+                setTimeout(addLinkAttr, 11000)
+            }else if (document.getElementById("showButton").hasAttribute('link')){
+                window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+                endButton()
+            }
+        }else {
+            alertCount--
+            alert('Il ne te reste plus que '+alertCount+' notifications à passer')
+        }
+
+    });
+
+    const createParticle = () => {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        container.appendChild(particle);
+
+        const size = Math.random() * 500 + 100; // Taille aléatoire
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        const r = Math.floor(Math.random() * 100); // Composante rouge
+        const g = Math.floor(Math.random() * 100); // Composante verte
+        const b = Math.floor(Math.random() * 255); // Composante bleue
+        const a = Math.random();
+
+        particle.style.backgroundColor = `rgba(${r},${g},${b},${a})`; // Couleur aléatoire avec transparence
+
+        // Définir une durée de vie aléatoire pour chaque particule
+        const lifeSpan = Math.random() * 10000 + 5000; // Durée de vie
+        setTimeout(() => {
+            particle.style.opacity = 0;
+            particle.style.transform = "scale(0)";
+            setTimeout(() => {
+                container.removeChild(particle);
+                createParticle(); // Créer une nouvelle particule pour remplacer celle qui a disparu
+            }, 5000); // Attendez que l'animation de disparition soit terminée avant de créer une nouvelle particule
+        }, lifeSpan);
+    };
+
+    const numberOfParticles = 20; // Nombre de particules à afficher
+    for (let i = 0; i < numberOfParticles; i++) {
+        createParticle();
+    }
+});
+</script>
+</body>
+</html>
