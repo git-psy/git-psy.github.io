@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page web - 2</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgb(22, 21, 21);
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: opacity 4s, transform 4s;
+        animation: particle 5s;
+    }
+    @keyframes particle {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+    .page {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(100px);
+        background-color: rgba(22, 21, 21, 0.5);
+    }
+    * {
+        color: white;
+        font-size: 25px;
+    }
+</style>
+</head>
+<body>
+<div class="container"></div>
+<div class="page">
+    <button onclick id="clickCounter" style="background-color: blue;border-radius: 10px;border: none;padding: 10px 20px;"></button>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".container");
+
+    function typeWriter(txt, speed, i = 0) {
+        if (i == 0) {
+            document.getElementById("clickCounter").innerHTML = '';
+        }
+        if (i < txt.length) {
+            if (txt.charAt(i) === "*") {
+                document.getElementById("clickCounter").innerHTML += "<br>";
+            }else if (txt.charAt(i) === "%") {
+                document.getElementById("clickCounter").innerHTML += "<a target='_BLANK' href='https://www.google.fr/search?q=argument+dans+une+adresse+web'>https://www.google.fr/search?q=argument+dans+une+adresse+web</a>";
+            } else {
+                document.getElementById("clickCounter").innerHTML += txt.charAt(i);
+            }
+            i++;
+            setTimeout(typeWriter, speed, txt, speed, i);
+        }
+    }
+
+
+    const createParticle = () => {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        container.appendChild(particle);
+
+        const size = Math.random() * 500 + 100; // Taille aléatoire
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+
+        const r = Math.floor(Math.random() * 100); // Composante rouge
+        const g = Math.floor(Math.random() * 100); // Composante verte
+        const b = Math.floor(Math.random() * 255); // Composante bleue
+        const a = Math.random();
+
+        particle.style.backgroundColor = `rgba(${r},${g},${b},${a})`; // Couleur aléatoire avec transparence
+
+        // Définir une durée de vie aléatoire pour chaque particule
+        const lifeSpan = Math.random() * 10000 + 5000; // Durée de vie
+        setTimeout(() => {
+            particle.style.opacity = 0;
+            particle.style.transform = "scale(0)";
+            setTimeout(() => {
+                container.removeChild(particle);
+                createParticle(); // Créer une nouvelle particule pour remplacer celle qui a disparu
+            }, 5000); // Attendez que l'animation de disparition soit terminée avant de créer une nouvelle particule
+        }, lifeSpan);
+    };
+
+    const numberOfParticles = 20; // Nombre de particules à afficher
+    for (let i = 0; i < numberOfParticles; i++) {
+        createParticle();
+    }
+
+    var urlParams = new URLSearchParams(window.location.search);
+    say = urlParams.get('say');
+    ask = urlParams.get('ask');
+
+    if (ask){
+        ask = ask.toLowerCase();
+        if (ask == '?'){
+            typeWriter('1 - ?*2 - nextStep*3 - whereIsBrian*4 - howAreYou*4 - NGGYU', 50)
+        }else if (ask == 'nextstep'){
+            typeWriter("Pense bien à regarder sous tes pieds", 50)
+        }else if (ask == 'whereisbrian'){
+            typeWriter("Brian is in the kitchen", 50)
+        }else if (ask == 'howareyou'){
+            typeWriter("Bien merci, c'est gentil de me poser la question :)", 50)
+            setTimeout(typeWriter, 3000, 'Pour te remercier je vais t\'aider un peu', 50)
+            setTimeout(typeWriter, 7000, 'Erruel nu\'uq tse\'n niart ud évirra\'l', 50)
+        }else if (ask == 'nggyu'){
+            document.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        }else {
+            typeWriter("'"+ask+"' n'est pas une question valide", 30)
+            setTimeout(typeWriter, 3000, 'Je peux te proposer des question avec la question \'?\'', 50)
+        }
+    }else if (say){
+        say = say.toLowerCase();
+        if (say == 'bonjour'){
+            typeWriter('Ah, je préfère ça', 50)
+            setTimeout(typeWriter, 3000, 'Plutôt que parler tu peux me questionner', 50)
+            setTimeout(typeWriter, 5500, 'Mais attention, je ne peux pas répondre à n\'importe quel question', 50)
+            setTimeout(typeWriter, 9000, 'Tu peux tenter en remplacant \'say\' par \'ask\'', 50)
+        }else {
+            typeWriter("'"+say+"' n'est pas valide", 30)
+        }
+    }else {
+        typeWriter('Coucou me revoila, le bouton qui t\'a énervé', 50)
+        setTimeout(typeWriter, 3500, 'Quelle impolitesse', 50)
+        setTimeout(typeWriter, 6500, 'Tu ne dis même pas bonjour', 50)
+        setTimeout(typeWriter, 9500, 'Rajoute l\'argument \'say\' avec comme valeur \'boujour\' à la fin de l\'adresse web*Aide: %', 50)
+    }
+});
+</script>
+</body>
+</html>
