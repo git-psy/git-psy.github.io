@@ -45,21 +45,25 @@
     * {
         color: white;
         font-size: 25px;
+        -moz-user-select: none; /* Firefox */
+        -webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+        -ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+        user-select: none; /* Propriété standard */
     }
 </style>
 </head>
 <body>
 <div class="container"></div>
 <div class="page">
-    <div id="txt" style="display: none;">x: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">100111010101010</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">100111010101010</span></div>
+    <div id="txt" style="display: none;">x: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">11100001</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y: <span style="background-color: blue;padding: 0 5px;border-radius: 5px;">-11101000</span></div>
     <button onclick id="showButton" style="background-color: blue;border-radius: 10px;border: none;padding: 10px 20px;"><span id="clickCounter">Oh... un bouton ?</span></button>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.querySelector(".container");
-    const maxClick = 201;
-    let alertCount = 50;
+    const maxClick = 1;//201;
+    let alertCount = 1;//50;
     let clickCount = 0;
 
     function typeWriter(txt, speed, i=0) {
@@ -77,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("showButton").style.display = "none";
         document.getElementById("txt").style.display = "block";
         setTimeout(alert, 30000, 'Si jamais tu le vois pas: c\'est du binaire')
+        setTimeout(alert, 300000, 'Bon, ca fait cinq minutes que tu galère, je te file les coordonnées de y: -232')
     }
 
     function addLinkAttr() {
